@@ -204,4 +204,4 @@ validator.validate()
 借鉴这些优秀的库，撸出此玩意儿。
 
 - [chriso/validator.js](https://github.com/chriso/validator.js)一个字符串验证器和转换类型的库
-- [rickharrison/validate.js](https://github.com/rickharrison/validate.js) validate.js是一个轻量级的JavaScript表单验证库灵感来源CodeIgniter。
+- [rickharrison/validate.js](https://github.com/rickharrison/validate.js) validate.js是一个轻量级的JavaScript表单验证库灵感来源[CodeIgniter](http://codeigniter.org.cn/user_guide/libraries/form_validation.html)。
