@@ -81,7 +81,24 @@ var validator = new Validator('example_form',[
 
 ## 例子
 
-### 点击按submit按钮验证
+### 字符串验证 
+
+```js
+var v = new Validator();
+v.isEmil('wowohoo@qq.com'); // -> 验证合法邮箱  |=> 返回布尔值
+v.isIp('192.168.23.3'); // -> 验证合法 ip 地址  |=> 返回布尔值
+v.isFax(''); // -> 验证传真  |=> 返回布尔值
+v.isPhone('13622667263'); // -> 验证手机  |=> 返回布尔值
+v.isTel('021－324234-234'); // -> 验证座机  |=> 返回布尔值
+v.isUrl('http://JSLite.io'); // -> 验证URL  |=> 返回布尔值
+v.maxLength('JSLite',12); // -> 最大长度  |=> 返回布尔值
+v.minLength('JSLite',3); // -> 最小长度  |=> 返回布尔值
+v.required('23'); // -> 是否为必填(是否为空)  |=> 返回布尔值
+```
+
+### 表单中验证
+
+**点击按submit按钮验证** 
 
 ```js 
 var validator = new Validator('example_form',[
@@ -106,7 +123,7 @@ var validator = new Validator('example_form',[
 })
 ```
 
-### 没有submit验证
+**没有submit验证**
 
 ```js 
 var validator = new Validator('example_form',[
