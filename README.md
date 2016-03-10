@@ -1,6 +1,6 @@
 # validator
 
-表单验证，字符串验证，返回布尔值。没有依赖，支持UMD，`~3kb`。
+轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，`~3kb`。
 
 ## 使用方法
 
@@ -39,7 +39,7 @@
     - `max_length` -> 最大长度
     - `min_length` -> 最小长度
 
-```json 
+```js 
 {
     //name 字段
     name: 'email',
@@ -152,7 +152,7 @@ validator.validate()
 
 ## 相关正则
 
-```json 
+```js 
 {
     // 匹配 max_length(12) => ["max_length",12]
     rule:/^(.+?)\((.+)\)$/,
@@ -197,3 +197,11 @@ validator.validate()
     url:/[a-zA-z]+:\/\/[^\s]/
 }
 ```
+
+
+## 参考
+
+受它们影响，撸出此玩意儿。
+
+- [chriso/validator.js](https://github.com/chriso/validator.js)
+- [rickharrison/validate.js](https://github.com/rickharrison/validate.js)
