@@ -52,8 +52,8 @@ var validator = new Validator('example_form',[
     //     // 验证条件
     //     rules: 'required|required'
     // }
-],function(error){
-    console.log("CALLBACK:",error);
+],function(error, evt, handles){
+    console.log("CALLBACK:",error,evt,handles);
 }).validate()
 
 // validator.validate()

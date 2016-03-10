@@ -1,20 +1,54 @@
 var regexs = {
-    rule:/^(.+?)\((.+)\)$/,     // 匹配 max_length(12)
-    numericRegex:/^[0-9]+$/,    // 数字
+    // 匹配 max_length(12) => ["max_length",12]
+    rule:/^(.+?)\((.+)\)$/,
+    // 数字
+    numericRegex:/^[0-9]+$/,
+    /**
+    * @descrition:邮箱规则
+    * 1.邮箱以a-z、A-Z、0-9开头，最小长度为1.
+    * 2.如果左侧部分包含-、_、.则这些特殊符号的前面必须包一位数字或字母。
+    * 3.@符号是必填项
+    * 4.右则部分可分为两部分，第一部分为邮件提供商域名地址，第二部分为域名后缀，现已知的最短为2位。最长的为6为。
+    * 5.邮件提供商域可以包含特殊字符-、_、.
+    */
     email:/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-    ip:/^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})$/i
+    ip:/^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})$/,
+    /**
+    * @descrition:判断输入的参数是否是个合格的固定电话号码。
+    * 待验证的固定电话号码。
+    **/
+    fax:/^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/,
+    /**
+    *@descrition:手机号码段规则
+    * 13段：130、131、132、133、134、135、136、137、138、139
+    * 14段：145、147
+    * 15段：150、151、152、153、155、156、157、158、159
+    * 17段：170、176、177、178
+    * 18段：180、181、182、183、184、185、186、187、188、189
+    */
+    phone:/^(13[0-9]|14[57]|15[012356789]|17[0678]|18[0-9])\d{8}$/,
+    /**
+     * @descrition 匹配 URL
+     */
+    url:/[a-zA-z]+:\/\/[^\s]/
 }
 
 var _testHook = {
     // 验证合法邮箱
-    is_emil: function(field){
-        return regexs.email.test(field.value);
-    },
+    is_emil: function(field){return regexs.email.test( backVal(field) );},
     // 验证合法 ip 地址
-    is_ip: function(value){return regexs.ip.test(value);},
+    is_ip: function(field){return regexs.ip.test( backVal(field) );},
+    // 验证传真
+    is_fax:function(field){return regexs.fax.test( backVal(field) );},
+    // 验证座机
+    is_tel:function(field){return regexs.fax.test( backVal(field) );},
+    // 验证手机
+    is_phone:function(field){return regexs.phone.test( backVal(field) );},
+    // 验证URL
+    is_url:function(field){return regexs.url.test( backVal(field) );},
     // 是否为必填
     required: function(field) {
-        var value = field.value;
+        var value =  backVal(field) ;
         if ((field.type === 'checkbox') || (field.type === 'radio')) {
             return (field.checked === true);
         }
@@ -22,25 +56,20 @@ var _testHook = {
     },
     // 最大长度
     max_length: function(field, length){
-        if (!regexs.numericRegex.test(length)) {
-            return false;
-        }
-        return (field.value.length >= parseInt(length, 10));
+        if (!regexs.numericRegex.test(length)) return false;
+        return ( backVal(field) .length >= parseInt(length, 10));
     },
     // 最小长度
-    min_length: function(){
-
-    }
-    // 合法传真
-    fax_no:function(){
-
+    min_length: function(field, length){
+        if (!regexs.numericRegex.test(length)) return false;
+        return ( backVal(field) .length <= parseInt(length, 10));
     }
 }
 
 var Validator = function(formelm, fields, callback){
 
     // 将验证方法绑到 Validator 对象上去
-    // for (var a in validation_method) this[a] = validation_method[a];
+    for (var a in _testHook) this[camelCase(a)] = _testHook[a];
 
     this.isCallback = callback?true:false;
     this.callback = callback || function(){};
@@ -60,7 +89,6 @@ var Validator = function(formelm, fields, callback){
             console.warn(field);
             continue;
         }
-
         
         // * 构建具有所有需要验证的信息的主域数组
         if (field.names) {
@@ -114,7 +142,7 @@ Validator.prototype = {
         }
 
         if (typeof this.callback === 'function') {
-            this.callback(this.errors, evt);
+            this.callback(this, evt);
         }
 
         // 如果有错误，停止submit 提交
@@ -182,6 +210,18 @@ Validator.prototype = {
 }
 
 /**
+ * [camelCase 将样式属性字符转换成驼峰。]
+ * @param  {[type]} string [字符串]
+ * @return {[type]}        [字符串]
+ */
+function camelCase(string){ 
+    // Support: IE9-11+
+    return string.replace( /\_([a-z])/g, function( all, letter ) {
+        return letter.toUpperCase();
+    });
+}
+
+/**
  * [attributeValue 获取节点对象的属性]
  * @param  {[type]} element       [传入节点]
  * @param  {[type]} attributeName [需要获取的属性]
@@ -225,4 +265,13 @@ function addField(self,field, nameValue){
  */
 function _formElm(elm){
     return (typeof elm === 'object') ? elm : document.forms[elm];
+}
+
+/**
+ * [backVal 判断 field 是否为字符串 ]
+ * @param  {[type]}              [Object or String]
+ * @return {[type]}              [String]
+ */
+function backVal(field){
+    return (typeof field === 'string')?field:field.value;
 }
