@@ -2,19 +2,33 @@
 
 轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，`~3kb`。
 
-## 使用方法
+## 安装使用
 
-> new Validator(formName, option, callback)
+### 模块
 
-### formName
-
-```html 
-<form name="example_form"></form>
-<!-- name 或者 id -->
-<form id="example_form"></form>
+```bash
+$ npm install validator.tool --save
 ```
 
-### option
+```js
+var validator = require('validator.tool');
+var v = new validator();
+v.isEmil('wowohoo@qq.com');
+v.isIp('192.168.23.3');
+v.isFax('');
+
+var a = new validator('example_form',[
+    {...}
+],function(obj,evt){
+    if(obj.errors){
+        // 判断是否错误
+    }
+})
+```
+
+
+
+## 客户端使用
 
 ```html 
 <form id="example_form">
@@ -23,7 +37,22 @@
         <input type="text" name="email" />
     </div>
 </form>
+<script type="text/javascript" src="dist/validator.min.js"></script>
+<script type="text/javascript">
+var v = new Validator();
+v.isEmil('wowohoo@qq.com');
+v.isIp('192.168.23.3');
+</script>
 ```
+
+> new Validator(formName, option, callback)
+
+
+### formName
+
+`formName` 是标签中`<form>` 中的 `id` 或者 `name` 的值，如上面的`example_form`
+
+### option
 
 - `name` -> input 中 `name` 对应的值
 - `display` -> 验证错误要提示的文字 `{{这个中间是name对应的值}}` 
