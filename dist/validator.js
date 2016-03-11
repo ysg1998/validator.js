@@ -1,12 +1,12 @@
 ;(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['Validator'], factory);
+    define([], factory);
   } else if (typeof exports === 'object') {
-    module.exports = factory(require('Validator'));
+    module.exports = factory();
   } else {
-    root.Validator = factory(root.Validator);
+    root.Validator = factory();
   }
-}(this, function(Validator) {
+}(this, function() {
 var regexs = {
     // 匹配 max_length(12) => ["max_length",12]
     rule:/^(.+?)\((.+)\)$/,

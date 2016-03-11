@@ -38,9 +38,6 @@ gulp.task('build', function () {
     gulp.src('src/*.js')
         .on('error',gutil.log)
         .pipe(umd({
-            dependencies: function(file) {
-                return ['Validator'];
-            },
             exports: function(file) {
                 return 'Validator';
             },

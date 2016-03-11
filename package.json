@@ -2,7 +2,7 @@
   "name": "validator.tool",
   "version": "1.0.0",
   "description": "表单验证",
-  "main": "src/validator.js",
+  "main": "dist/validator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
