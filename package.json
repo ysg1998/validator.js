@@ -1,11 +1,23 @@
 {
-  "name": "validator",
+  "name": "validator.tool",
   "version": "1.0.0",
   "description": "表单验证",
   "main": "src/validator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "validator",
+    "validator.tool",
+    "validator.js",
+    "validation",
+    "validate",
+    "sanitization",
+    "sanitize",
+    "sanitisation",
+    "sanitise",
+    "assert"
+  ],
   "author": "kenny wang <398188662@qq.com> (http://JSLite.io)",
   "license": "MIT",
   "dependencies": {
