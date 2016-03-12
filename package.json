@@ -4,7 +4,8 @@
   "description": "轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，~3kb。",
   "main": "dist/validator.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha-phantomjs test/validators.html",
+    "clean": "rm -rf dist/validator*.js"
   },
   "keywords": [
     "validator",
@@ -27,6 +28,9 @@
     "gulp-uglify": "^1.5.3",
     "gulp-umd": "^0.2.0",
     "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.5"
+    "gulp-watch": "^4.3.5",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "mocha-phantomjs": "^4.0.2"
   }
 }
