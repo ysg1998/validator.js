@@ -20,7 +20,7 @@ var regexs = {
     * 4.右则部分可分为两部分，第一部分为邮件提供商域名地址，第二部分为域名后缀，现已知的最短为2位。最长的为6为。
     * 5.邮件提供商域可以包含特殊字符-、_、.
     */
-    email:/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+    email:/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
     /**
      * [ip ipv4、ipv6]
      * "192.168.0.0"
@@ -53,7 +53,7 @@ var regexs = {
 
 var _testHook = {
     // 验证合法邮箱
-    is_emil: function(field){return regexs.email.test( backVal(field) );},
+    is_email: function(field){return regexs.email.test( backVal(field) );},
     // 验证合法 ip 地址
     is_ip: function(field){return regexs.ip.test( backVal(field) );},
     // 验证传真
