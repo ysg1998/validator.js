@@ -13,7 +13,7 @@ $ npm install validator.tool --save
 ```js
 var validator = require('validator.tool');
 var v = new validator();
-v.isEmil('wowohoo@qq.com');
+v.isEmail('wowohoo@qq.com');
 v.isIp('192.168.23.3');
 v.isFax('');
 
@@ -40,7 +40,7 @@ var a = new validator('example_form',[
 <script type="text/javascript" src="dist/validator.min.js"></script>
 <script type="text/javascript">
 var v = new Validator();
-v.isEmil('wowohoo@qq.com');
+v.isEmail('wowohoo@qq.com');
 v.isIp('192.168.23.3');
 </script>
 ```
@@ -92,7 +92,7 @@ var validator = new Validator('example_form',[
     //  form:form#example_form
     //  handles:Object
     //  isCallback:true
-    //  isEmil:(field)
+    //  isEmail:(field)
     //  isFax:(field)
     //  isIp:(field)
     //  isPhone:(field)
@@ -114,7 +114,7 @@ var validator = new Validator('example_form',[
 
 ```js
 var v = new Validator();
-v.isEmil('wowohoo@qq.com'); // -> 验证合法邮箱  |=> 返回布尔值
+v.isEmail('wowohoo@qq.com'); // -> 验证合法邮箱  |=> 返回布尔值
 v.isIp('192.168.23.3'); // -> 验证合法 ip 地址  |=> 返回布尔值
 v.isFax(''); // -> 验证传真  |=> 返回布尔值
 v.isPhone('13622667263'); // -> 验证手机  |=> 返回布尔值
