@@ -1,4 +1,6 @@
-# validator
+# validator 
+
+[![Build Status](https://travis-ci.org/jaywcjlove/validator.js.svg?branch=master)](https://travis-ci.org/jaywcjlove/validator.js)
 
 轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，`~3kb`。
 
