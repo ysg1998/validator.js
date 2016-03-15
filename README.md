@@ -8,17 +8,23 @@
 
 ### 模块
 
+在应用中引用 `validator.min.js` 文件
+
 ```bash
 $ npm install validator.tool --save
 ```
 
+在 `.js` 文件中调用
+
 ```js
+// 字符串验证
 var validator = require('validator.tool');
 var v = new validator();
 v.isEmail('wowohoo@qq.com');
 v.isIp('192.168.23.3');
 v.isFax('');
 
+// 表单验证
 var a = new validator('example_form',[
     {...}
 ],function(obj,evt){
@@ -32,20 +38,58 @@ var a = new validator('example_form',[
 
 ## 客户端使用
 
+在应用中引用 `validator.min.js` 文件
+
+```html 
+<script type="text/javascript" src="dist/validator.min.js"></script>
+```
+
+
+在JS中使用方法。
+
+```html 
+<script type="text/javascript">
+  var v = new Validator();
+  v.isEmail('wowohoo@qq.com');
+  v.isIp('192.168.23.3');
+</script>
+```
+
+应用在表单中的方法。
+
 ```html 
 <form id="example_form">
     <div>
-        <label>邮箱验证</label>
-        <input type="text" name="email" />
+        <label for="email">邮箱验证</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
     </div>
 </form>
-<script type="text/javascript" src="dist/validator.min.js"></script>
 <script type="text/javascript">
-var v = new Validator();
-v.isEmail('wowohoo@qq.com');
-v.isIp('192.168.23.3');
+  var validator = new Validator('example_form',[
+    {
+        //name 字段
+        name: 'email',
+        display:"你输入的不{{email}}是合法邮箱|不能为空|太长|太短",
+        // 验证条件
+        rules: 'is_emil|max_length(12)'
+        // rules: 'valid_email|required|max_length(12)|min_length(2)'
+    },{
+        //name 字段
+        name: 'sex',
+        display:"请你选择性别{{sex}}",
+        // 验证条件
+        rules: 'required'
+    }
+  ],function(obj,evt){
+      if(obj.errors){
+          // 判断是否错误
+      }
+  })
 </script>
 ```
+
+
+## 说明文档
 
 > new Validator(formName, option, callback)
 
@@ -60,15 +104,15 @@ v.isIp('192.168.23.3');
 - `display` -> 验证错误要提示的文字 `{{这个中间是name对应的值}}` 
 - `rules` -> 一个或多个规则(中间用`|`间隔)
 
-    - `is_emil` -> 验证合法邮箱
+    - `is_email` -> 验证合法邮箱
     - `is_ip` -> 验证合法 ip 地址
     - `is_fax` -> 验证传真
     - `is_tel` -> 验证座机
     - `is_phone` -> 验证手机
     - `is_url` -> 验证URL
     - `required` -> 是否为必填
-    - `max_length` -> 最大长度
-    - `min_length` -> 最小长度
+    - `max_length` -> 最大字符长度
+    - `min_length` -> 最小字符长度
 
 ```js 
 {
@@ -76,7 +120,7 @@ v.isIp('192.168.23.3');
     name: 'email',
     display:"你输入的不{{email}}是合法邮箱|不能为空|太长|太短",
     // 验证条件
-    rules: 'is_emil|max_length(12)'
+    rules: 'is_email|max_length(12)'
     // rules: 'valid_email|required|max_length(12)|min_length(2)'
 }
 ```
@@ -138,7 +182,7 @@ var validator = new Validator('example_form',[
         name: 'email',
         display:"你输入的不{{email}}是合法邮箱|不能为空|太长|太短",
         // 验证条件
-        rules: 'is_emil|max_length(12)'
+        rules: 'is_email|max_length(12)'
         // rules: 'valid_email|required|max_length(12)|min_length(2)'
     },{
         //name 字段
@@ -163,7 +207,7 @@ var validator = new Validator('example_form',[
         name: 'email',
         display:"你输入的不{{email}}是合法邮箱|不能为空|太长|太短",
         // 验证条件
-        rules: 'is_emil|max_length(12)'
+        rules: 'is_email|max_length(12)'
         // rules: 'valid_email|required|max_length(12)|min_length(2)'
     },{
         //name 字段
