@@ -67,12 +67,12 @@ var _testHook = {
     // 最大长度
     max_length: function(field, length){
         if (!regexs.numericRegex.test(length)) return false;
-        return ( backVal(field) .length >= parseInt(length, 10));
+        return ( backVal(field) .length <= parseInt(length, 10));
     },
     // 最小长度
     min_length: function(field, length){
         if (!regexs.numericRegex.test(length)) return false;
-        return ( backVal(field) .length <= parseInt(length, 10));
+        return ( backVal(field) .length >= parseInt(length, 10));
     }
 }
 
