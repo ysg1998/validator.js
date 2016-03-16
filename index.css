@@ -186,6 +186,12 @@ input[type^="text"],input[type^="password"],input[type^="email"]{
     display: block;
 }
 
+.error_msg {
+    padding: 5px 5px 15px 5px;
+    color: red;
+    display: none;
+}
+
 
 @media screen and (max-width:1004px) {
     .header .name{
@@ -206,3 +212,4 @@ input[type^="text"],input[type^="password"],input[type^="email"]{
         width: 100%;
     }
 }
+

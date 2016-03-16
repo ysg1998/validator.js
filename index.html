@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Validator.js验证工具</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/default.min.css">
 </head>
@@ -70,6 +70,8 @@
                 
             </label>
         </div>
+
+        <div class="error_msg" id="error_msg">这里提示错误消息</div>
 
         <button class="btn-default" type="submit" name="submit">提交按钮</button>
     </form>
@@ -252,7 +254,7 @@
 
 </code></pre>
 
-<iframe class="github" src="http://ghbtns.com/github-btn.html?user=jaywcjlove&amp;repo=validator.js&amp;type=follow&amp;count=false&amp;size=large" allowtransparency="true" frameborder="0" scrolling="0" width="350px" height="30px"></iframe>
+<iframe class="github" src="http://ghbtns.com/github-btn.html?user=jaywcjlove&amp;repo=validator.js&amp;type=follow&amp;count=false&amp;size=large" allowtransparency="true" frameborder="0" scrolling="0"  height="30px" style="width: 200px;"></iframe>
 
 </div>
 
@@ -266,29 +268,31 @@
 hljs.initHighlightingOnLoad();
 
 var validator = new Validator('example_form',[
-    // {
-    //     name:"req",
-    //     display:"不能为空",
-    //     rules: 'required'
-    // },{
-    //     name:"alphanumeric",
-    //     display:"字数小于5个字符|大于15个字符",
-    //     rules: 'min_length(5)|max_length(15)'
-    // },{
-    //     name:"email",
-    //     display:"请输入您的{{email}}|这不是一个邮箱",
-    //     rules: 'required|is_email'
-    // },{
-    //     name:"minlength",
-    //     display:"不能为空|至少输入8个字符，您输入的{{minlength}}长度少于8",
-    //     rules: 'required|min_length(8)'
-    // },
     {
+        name:"req",
+        display:"必填字段不能为空",
+        rules: 'required'
+    },{
+        name:"alphanumeric",
+        display:"字数小于5个字符|大于15个字符",
+        rules: 'min_length(5)|max_length(15)'
+    },{
+        name:"email",
+        display:"请输入您的{{email}}|这不是一个邮箱",
+        rules: 'required|is_email'
+    },{
+        name:"minlength",
+        display:"不能为空|至少输入8个字符，您输入的{{minlength}}长度少于8",
+        rules: 'required|min_length(8)'
+    },{
         name:"tos_checkbox",
         display:"复选框不能为空",
         rules: 'required'
     }
 ],function(obj,evt){
+
+    var errors_elm = document.getElementById('error_msg');
+    errors_elm.style.display = 'none';
     //obj = {
     //  callback:(error, evt, handles)
     //  errors:Array[2]
@@ -307,10 +311,13 @@ var validator = new Validator('example_form',[
     //  required:(field)
     //} 
     if(obj.errors.length>0){
-        for (var i = 0; i < obj.errors.length; i++) {
-            alert(obj.errors[i].message)
-        }
         // 判断是否错误
+        var error_str = '';
+        for (var i = 0; i < obj.errors.length; i++) {
+            error_str += i+1 + ':' + obj.errors[i].message + '；<br/>';
+        }
+        errors_elm.style.display = "block";
+        errors_elm.innerHTML = error_str;
     }
     console.log(validator);
 })
