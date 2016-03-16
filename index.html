@@ -66,12 +66,12 @@
 
         <div class="checkbox">
             <label for="tos_checkbox">
-                <input name="tos_checkbox" id="tos_checkbox" type="checkbox"> Required checkbox (example: Terms of Service)
+                <input name="tos_checkbox" id="tos_checkbox" type="checkbox"> 复选框必填(用于服务条款)
                 
             </label>
         </div>
 
-        <button class="btn-default" type="submit" name="submit">Submit</button>
+        <button class="btn-default" type="submit" name="submit">提交按钮</button>
     </form>
 
 <div class="warpper_code">
@@ -266,22 +266,27 @@
 hljs.initHighlightingOnLoad();
 
 var validator = new Validator('example_form',[
+    // {
+    //     name:"req",
+    //     display:"不能为空",
+    //     rules: 'required'
+    // },{
+    //     name:"alphanumeric",
+    //     display:"字数小于5个字符|大于15个字符",
+    //     rules: 'min_length(5)|max_length(15)'
+    // },{
+    //     name:"email",
+    //     display:"请输入您的{{email}}|这不是一个邮箱",
+    //     rules: 'required|is_email'
+    // },{
+    //     name:"minlength",
+    //     display:"不能为空|至少输入8个字符，您输入的{{minlength}}长度少于8",
+    //     rules: 'required|min_length(8)'
+    // },
     {
-        name:"req",
-        display:"不能为空",
+        name:"tos_checkbox",
+        display:"复选框不能为空",
         rules: 'required'
-    },{
-        name:"alphanumeric",
-        display:"字数小于5个字符|大于15个字符",
-        rules: 'min_length(5)|max_length(15)'
-    },{
-        name:"email",
-        display:"请输入您的{{email}}|这不是一个邮箱",
-        rules: 'required|is_email'
-    },{
-        name:"minlength",
-        display:"不能为空|至少输入8个字符，您输入的{{minlength}}长度少于8",
-        rules: 'required|min_length(8)'
     }
 ],function(obj,evt){
     //obj = {
