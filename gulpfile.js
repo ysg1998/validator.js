@@ -5,13 +5,21 @@ var gzip = require('gulp-gzip')
 var gutil = require('gulp-util');
 var umd = require("gulp-umd");
 var watch = require("gulp-watch");
+var banner = require("gulp-banner");
 
-
+var pkg = require('./package.json')
 gulp.task('default',['build']);
 gulp.task('watch',function(){
     gulp.watch('src/**/*',['build'])
 })
 
+var comment = '/*\n' +
+    ' * <%= pkg.name %> <%= pkg.version %>\n' +
+    ' * <%= pkg.description %>' +
+    '\n * <%= pkg.homepage %>' +
+    '\n * Copyright 2015, <%= pkg.author %>' +
+    '\n * Released under the <%= pkg.license %> license.\n' +
+    '*/\n';
 
 gulp.task('build', function () {
 
@@ -31,6 +39,9 @@ gulp.task('build', function () {
                 comments:false
             }
         }).on('error',gutil.log))
+        .pipe(banner(comment, {
+            pkg: pkg
+        }))
         .pipe(rename({suffix:".min"})) 
         .pipe(gulp.dest('./dist'));
 
@@ -44,6 +55,9 @@ gulp.task('build', function () {
             namespace: function(file) {
                 return 'Validator';
             }
+        }))
+        .pipe(banner(comment, {
+            pkg: pkg
         }))
         .pipe(gulp.dest('./dist/'));
 
