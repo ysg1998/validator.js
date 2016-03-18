@@ -46,7 +46,8 @@ table {border-spacing: 0; border-collapse: collapse; }
     border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 .header .nav a:hover {color: white; }
-.header .name {text-shadow: -4px 2px 0 rgba(0, 0, 0, 0.29);color: #fff; font: 120px 'Andada', 'Helvetica', Arial, sans-serif; margin: 0 0 15px 0;font-style: italic;}
+.header .name {color: #fff; font: 120px 'Andada', 'Helvetica', Arial, sans-serif; margin: 0 0 15px 0;font-style: italic;
+}
 .header .desc{font-size: 32px;line-height: 35px;}
 .header .mb40{margin-bottom: 40px;}
 .header .gogogo a.btn {
@@ -287,7 +288,14 @@ input[type^="text"],input[type^="password"],input[type^="email"]{
   }
 }
 .loader {
-  overflow: hidden;
+overflow: hidden;
+text-shadow: 
+1px 1px 0 #CCC, 
+2px 2px 0 #CCC, 
+3px 3px 0 #444, 
+4px 4px 0 #444, 
+5px 5px 0 #444, 
+6px 6px 0 #444;
 
 }
 .loader span {
