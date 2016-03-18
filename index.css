@@ -193,6 +193,34 @@ input[type^="text"],input[type^="password"],input[type^="email"]{
 }
 
 
+.arrow{
+   
+    display:block;height:40px;
+    position:absolute;width:40px;
+    z-index:100;
+    background:url(arrow.png) no-repeat;
+    background-size:100% auto;
+    bottom:-15px;
+    left:50%;
+    margin-left:-20px;
+    -webkit-animation:touchstyle-arrow-vertical-animate 2s infinite;
+    animation:touchstyle-arrow-vertical-animate 2s infinite;
+}
+@keyframes touchstyle-arrow-vertical-animate{
+    0%{opacity:0;-webkit-transform:translateY(0);transform:translateY(0)}
+    33%,66%{opacity:.8}
+    50%{opacity:.8;-webkit-transform:translateY(-8px);transform:translateY(-8px)}
+    100%{opacity:0;-webkit-transform:translateY(-16px);transform:translateY(-16px)}
+}
+@-webkit-keyframes touchstyle-arrow-vertical-animate{
+
+    0%{opacity:0;-webkit-transform:translateY(0)}
+    33%,66%{opacity:.8}
+    50%{opacity:.8;-webkit-transform:translateY(-8px)}
+    100%{opacity:0;-webkit-transform:translateY(-16px)}
+}
+
+
 @media screen and (max-width:1004px) {
     .header .name{
         font-size: 36px;
