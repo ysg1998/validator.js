@@ -1,6 +1,6 @@
 # validator 
 
-[![Build Status](https://travis-ci.org/jaywcjlove/validator.js.svg?branch=master)](https://travis-ci.org/jaywcjlove/validator.js) [![Circle CI](https://circleci.com/gh/jaywcjlove/validator.js.svg?style=svg)](https://circleci.com/gh/jaywcjlove/validator.js)
+[![Build Status](https://travis-ci.org/jaywcjlove/validator.js.svg?branch=master)](https://travis-ci.org/jaywcjlove/validator.js) [![](http://jaywcjlove.github.io/sb/status/no-dependencies.svg)]() [![](http://jaywcjlove.github.io/sb/ico/bower.svg)]() [![Circle CI](http://jaywcjlove.github.io/sb/ico/bower.svg)](https://circleci.com/gh/jaywcjlove/validator.js)
 
 轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，`~3kb`。
 
@@ -11,7 +11,10 @@
 在应用中引用 `validator.min.js` 文件
 
 ```bash
+# npm 安装
 $ npm install validator.tool --save
+# bower 安装
+$ bower info validator.tool
 ```
 
 在 `.js` 文件中调用
