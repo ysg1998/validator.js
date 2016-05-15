@@ -285,3 +285,5 @@ function _formElm(elm){
 function backVal(field){
     return (typeof field === 'string')?field:field.value;
 }
+
+return Validator;
