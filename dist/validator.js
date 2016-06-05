@@ -1,5 +1,5 @@
 /*!
- * validator.tool v1.0.2
+ * validator.tool v1.0.3
  * Copyright (c) 2016 kenny wang <wowohoo@qq.com> (http://JSLite.io)
  * Licensed under the MIT license.
  * 
@@ -133,14 +133,7 @@
                 console.warn(field);
                 continue;
             }
-            // * 构建具有所有需要验证的信息的主域数组
-            if (field.names) {
-                for (var j = 0, fieldNamesLength = field.names.length; j < fieldNamesLength; j++) {
-                    addField(this, field, field.names[j]);
-                }
-            } else {
-                addField(this, field, field.name);
-            }
+            addField(this, field, field.name);
         }
         // 使用 submit 按钮拦截
         var _onsubmit = this.form.onsubmit;
@@ -200,6 +193,11 @@
                 if (parts) method = parts[1], param = parts[2];
                 if (typeof _testHook[method] === "function") {
                     if (!_testHook[method].apply(this, [ field, param ])) {
+                        failed = true;
+                    }
+                }
+                if (regexs[method] && /^regexp\_/.test(method)) {
+                    if (!regexs[method].test(field.value)) {
                         failed = true;
                     }
                 }
@@ -275,6 +273,11 @@
             value: null,
             checked: null
         };
+        for (var a in field) {
+            if (field.hasOwnProperty(a) && /^regexp\_/.test(a)) {
+                regexs[a] = field[a];
+            }
+        }
     }
     /**
  * [_formElm 获取 dome 节点对象]

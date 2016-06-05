@@ -92,22 +92,13 @@ var Validator = function(formelm, fields, callback){
     if(!formelm) return this;
 
     for (var i = 0, fieldLength = fields.length; i < fieldLength; i++) {
-        
         var field = fields[i];
         // 如果通过不正确，我们需要跳过该领域。
         if ((!field.name && !field.names) || !field.rules) {
             console.warn(field);
             continue;
         }
-        
-        // * 构建具有所有需要验证的信息的主域数组
-        if (field.names) {
-            for (var j = 0, fieldNamesLength = field.names.length; j < fieldNamesLength; j++) {
-                addField(this, field, field.names[j]);
-            }
-        } else {
-            addField(this, field, field.name);
-        }
+        addField(this, field, field.name);
     }
 
     // 使用 submit 按钮拦截
@@ -168,13 +159,11 @@ Validator.prototype = {
         return this;
     },
     _validateField:function(field){
-        
 
         var rules = field.rules.split('|'),
             isEmpty = (!field.value || field.value === '' || field.value === undefined);
 
         for (var i = 0,ruleLength = rules.length; i < ruleLength; i++) {
-            
             var method = rules[i];
             var parts = regexs.rule.exec(method);
 
@@ -189,7 +178,11 @@ Validator.prototype = {
                     failed = true;
                 }
             }
-
+            if(regexs[method] && /^regexp\_/.test(method)){
+              if (!regexs[method].test(field.value)) {
+                failed = true;
+              }
+            }
             if(failed){
                 var message = (function(){
                     return field.display.split('|')[i] && field.display.split('|')[i].replace('{{'+field.name+'}}',field.value)
@@ -265,6 +258,11 @@ function addField(self,field, nameValue){
         type: null,
         value: null,
         checked: null
+    }
+    for (var a in field) {
+      if (field.hasOwnProperty(a)&&/^regexp\_/.test(a)) {
+        regexs[a] = field[a];
+      }
     }
 }
 
