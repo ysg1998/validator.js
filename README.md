@@ -1,6 +1,6 @@
 # validator 
 
-[![Build Status](https://travis-ci.org/jaywcjlove/validator.js.svg?branch=master)](https://travis-ci.org/jaywcjlove/validator.js) [![](http://jaywcjlove.github.io/sb/status/no-dependencies.svg)]() [![](http://jslite.io/sb/ico/npm.svg)](https://www.npmjs.com/package/validator.tool) [![](http://jaywcjlove.github.io/sb/ico/bower.svg)]()
+[![Build Status](https://travis-ci.org/jaywcjlove/validator.js.svg?branch=master)](https://travis-ci.org/jaywcjlove/validator.js) [![](http://jaywcjlove.github.io/sb/status/no-dependencies.svg)]() [![](https://jaywcjlove.github.io/sb/ico/npm.svg)](https://www.npmjs.com/package/validator.tool) [![](http://jaywcjlove.github.io/sb/ico/bower.svg)]() 
 
 轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，`~3kb`。
 
@@ -128,6 +128,23 @@ var a = new validator('example_form',[
 }
 ```
 
+### 自定义正则
+
+自定义正则，以`regexp_`开始
+
+```js
+{
+  //name 字段
+  name: 'sex',
+  // 对应下面验证提示信息
+  display:"请你选择性别{{sex}}|请输入数字",
+  //自定义正则`regexp_num`
+  regexp_num:/^[0-9]+$/,
+  // 验证条件，包括应用自定义正则`regexp_num`
+  rules: 'required|regexp_num'
+}
+```
+
 ### callback
 
 ```js 
@@ -215,9 +232,10 @@ var validator = new Validator('example_form',[
     },{
         //name 字段
         name: 'sex',
-        display:"请你选择性别{{sex}}",
+        display:"请你选择性别{{sex}}|请输入数字",
+        regexp_num:/^[0-9]+$/,
         // 验证条件
-        rules: 'required'
+        rules: 'required|regexp_num'
     }
 ],function(obj,evt){
     if(obj.errors){
