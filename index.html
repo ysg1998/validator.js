@@ -239,6 +239,25 @@
 </code></pre>
 
 
+<h4 class="title"><span>自定义正则</span></h4>
+<p> 自定义正则，以<code>regexp_</code>开始</p>
+
+<pre>
+<code class="js">
+{
+  //name 字段
+  name: 'sex',
+  // 对应下面验证提示信息
+  display:"请你选择性别{{sex}}|请输入数字",
+  //自定义正则`regexp_num`
+  regexp_num:/^[0-9]+$/,
+  // 验证条件，包括应用自定义正则`regexp_num`
+  rules: 'required|regexp_num'
+}
+
+</code></pre>
+
+
 <h4 class="title"><span>callback</span></h4>
 
 
