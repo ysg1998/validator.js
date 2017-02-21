@@ -1,6 +1,6 @@
 /*!
- * validator.tool v1.0.3
- * Copyright (c) 2016 kenny wang <wowohoo@qq.com> (http://JSLite.io)
+ * validator.tool v1.0.4
+ * Copyright (c) 2017 kenny wang <wowohoo@qq.com> (http://JSLite.io)
  * Licensed under the MIT license.
  * 
  * 轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，~3kb。
@@ -65,7 +65,7 @@
     * 18段：180、181、182、183、184、185、186、187、188、189
     * 国际码 如：中国(+86)
     */
-        phone: /^((\+?[0-9]{1,4})|(\(\+86\)))?(13[0-9]|14[57]|15[012356789]|17[0678]|18[0-9])\d{8}$/,
+        phone: /^((\+?[0-9]{1,4})|(\(\+86\)))?(13[0-9]|14[57]|15[012356789]|17[03678]|18[0-9])\d{8}$/,
         /**
      * @descrition 匹配 URL
      */
