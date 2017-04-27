@@ -81,7 +81,6 @@ var Validator = function(formelm, fields, callback){
     // 将验证方法绑到 Validator 对象上去
     for (var a in _testHook) this[camelCase(a)] = _testHook[a];
 
-    this.isCallback = callback?true:false;
     this.callback = callback || function(){};
     this.form = _formElm(formelm) || {};
     this.errors = [];
@@ -188,7 +187,7 @@ Validator.prototype = {
                     return field.display.split('|')[i] && field.display.split('|')[i].replace('{{'+field.name+'}}',field.value)
                 })()
 
-                var existingError;
+                var existingError,j;
                 for (j = 0; j < this.errors.length; j += 1) {
                     if (field.element === this.errors[j].element) {
                         existingError = this.errors[j];
