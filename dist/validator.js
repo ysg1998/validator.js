@@ -1,5 +1,5 @@
 /*!
- * validator.tool v1.0.5
+ * validator.tool v1.0.6
  * 轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，~3kb。
  * 
  * Copyright (c) 2017 kenny wang <wowohoo@qq.com> (http://JSLite.io)
@@ -117,7 +117,6 @@
         // 指定字段内容是否相同
         same: function(field, newField) {
             var value1 = backVal(field);
-            console.log("this.fields:", JSON.stringify(this.fields));
             var value2 = backVal(this.fields[newField].element);
             return value1 == value2;
         }
