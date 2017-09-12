@@ -1,11 +1,11 @@
 /*!
- * validator.tool v1.0.4
- * Copyright (c) 2017 kenny wang <wowohoo@qq.com> (http://JSLite.io)
- * Licensed under the MIT license.
- * 
+ * validator.tool v1.0.5
  * 轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，~3kb。
+ * 
+ * Copyright (c) 2017 kenny wang <wowohoo@qq.com> (http://JSLite.io)
  * http://jaywcjlove.github.io/validator.js
  * 
+ * Licensed under the MIT license.
  */
 (function(f) {
     if (typeof exports === "object" && typeof module !== "undefined") {
@@ -113,12 +113,18 @@
         min_length: function(field, length) {
             if (!regexs.numericRegex.test(length)) return false;
             return backVal(field).length >= parseInt(length, 10);
+        },
+        // 指定字段内容是否相同
+        same: function(field, newField) {
+            var value1 = backVal(field);
+            console.log("this.fields:", JSON.stringify(this.fields));
+            var value2 = backVal(this.fields[newField].element);
+            return value1 == value2;
         }
     };
     var Validator = function(formelm, fields, callback) {
         // 将验证方法绑到 Validator 对象上去
         for (var a in _testHook) this[camelCase(a)] = _testHook[a];
-        this.isCallback = callback ? true : false;
         this.callback = callback || function() {};
         this.form = _formElm(formelm) || {};
         this.errors = [];
@@ -152,6 +158,8 @@
      * @return {[type]}     [JSON]
      */
         validate: function(evt) {
+            // 特殊情况直接通过
+            if (this._passes) return this;
             this.handles["ok"] = true;
             this.handles["evt"] = evt;
             this.errors = [];
@@ -182,6 +190,10 @@
             }
             return this;
         },
+        passes: function() {
+            this._passes = true;
+            return this;
+        },
         _validateField: function(field) {
             var rules = field.rules.split("|"), isEmpty = !field.value || field.value === "" || field.value === undefined;
             for (var i = 0, ruleLength = rules.length; i < ruleLength; i++) {
@@ -205,7 +217,7 @@
                     var message = function() {
                         return field.display.split("|")[i] && field.display.split("|")[i].replace("{{" + field.name + "}}", field.value);
                     }();
-                    var existingError;
+                    var existingError, j;
                     for (j = 0; j < this.errors.length; j += 1) {
                         if (field.element === this.errors[j].element) {
                             existingError = this.errors[j];

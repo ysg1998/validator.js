@@ -1,5 +1,7 @@
-var expect = chai.expect;
-var assert = chai.assert;
+var Validator = require('../dist/validator.js');
+var expect = require('chai').expect;
+var assert = require('chai').assert;
+
 
 var v =  new Validator();
 
