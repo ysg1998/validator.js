@@ -4,3 +4,6 @@ test
 *.log
 .circle.yml
 .travis.yml
+example
+test
+src
