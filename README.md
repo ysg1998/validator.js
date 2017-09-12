@@ -66,6 +66,15 @@ var a = new validator('example_form',[
         <label for="email">邮箱验证</label>
         <input type="email" name="email" id="email" class="form-control" placeholder="Email">
     </div>
+    <div class="form-group">
+        <label for="passworld">密码:</label>
+        <input type="passworld" name="passworld" id="passworld" class="form-control" placeholder="输入密码">
+    </div>
+
+    <div class="form-group">
+        <label for="repassworld">确认密码:</label>
+        <input type="repassworld" name="repassworld" id="repassworld" class="form-control" placeholder="输入密码">
+    </div>
 </form>
 <script type="text/javascript">
   var validator = new Validator('example_form',[
@@ -77,11 +86,13 @@ var a = new validator('example_form',[
         rules: 'is_emil|max_length(12)'
         // rules: 'valid_email|required|max_length(12)|min_length(2)'
     },{
-        //name 字段
-        name: 'sex',
-        display:"请你选择性别{{sex}}",
-        // 验证条件
-        rules: 'required'
+      name:"passworld",
+      display:"必填",
+      rules: 'required'
+    },{
+      name:"repassworld",
+      display:"密码不一致",
+      rules: 'same(passworld)'
     }
   ],function(obj,evt){
       if(obj.errors){
@@ -116,6 +127,7 @@ var a = new validator('example_form',[
     - `required` -> 是否为必填
     - `max_length` -> 最大字符长度
     - `min_length` -> 最小字符长度
+    - `same` -> 指定字段内容是否相同
 
 ```js 
 {
@@ -172,6 +184,21 @@ var validator = new Validator('example_form',[
         // 判断是否错误
     }
 })
+```
+
+### 特殊情况直接提交
+
+```js
+var validator = new Validator('example_form',[
+    {...},{...}
+],function(obj,evt){
+    //obj = {
+    //} 
+    if(obj.errors.length>0){
+        // 判断是否错误
+    }
+})
+validator.passes().form.submit();
 ```
 
 ## 例子
