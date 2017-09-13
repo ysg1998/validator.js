@@ -1,6 +1,6 @@
 # validator 
 
-[![Build Status](https://travis-ci.org/jaywcjlove/validator.js.svg?branch=master)](https://travis-ci.org/jaywcjlove/validator.js) [![](http://jaywcjlove.github.io/sb/status/no-dependencies.svg)]() [![](https://jaywcjlove.github.io/sb/ico/npm.svg)](https://www.npmjs.com/package/validator.tool) [![](http://jaywcjlove.github.io/sb/ico/bower.svg)]() 
+[![Build Status](https://travis-ci.org/jaywcjlove/validator.js.svg?branch=master)](https://travis-ci.org/jaywcjlove/validator.js) ![](http://jaywcjlove.github.io/sb/status/no-dependencies.svg) [![](https://jaywcjlove.github.io/sb/ico/npm.svg)](https://www.npmjs.com/package/validator.tool) [![](http://jaywcjlove.github.io/sb/ico/bower.svg)]() 
 
 轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，`~3kb`。
 
