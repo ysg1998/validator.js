@@ -124,6 +124,10 @@ var a = new validator('example_form',[
     - `is_tel` -> 验证座机
     - `is_phone` -> 验证手机
     - `is_url` -> 验证URL
+    - `is_money` -> 金额格式验证
+    - `is_english` -> 字母验证⚠️
+    - `is_chinese` -> 中文验证
+    - `is_percent` -> 验证百分比⚠️
     - `required` -> 是否为必填
     - `max_length` -> 最大字符长度
     - `min_length` -> 最小字符长度
