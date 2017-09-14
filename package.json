@@ -6,6 +6,7 @@
   "main": "dist/validator.js",
   "scripts": {
     "test": "karma start --single-run",
+    "test:watch": "karma start",
     "clean": "rm -rf dist/validator*.js",
     "build:min": "umd Validator src/validator.js | uglifyjs -mc | bannerjs -o > dist/validator.min.js",
     "build:dist": "umd Validator src/validator.js | bannerjs -m | uglifyjs -b beautify=true --comments 'all' > dist/validator.js ",

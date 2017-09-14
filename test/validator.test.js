@@ -78,13 +78,47 @@ describe("validators", function () {
         expect(v.isTel('13012341233')).to.be.false;
     });
 
-    // 国家代码(2到3位)-区号(2到3位)-电话号码(7到8位)-分机号(3位)
-    it("isMoney() 座机号码验证", function () {
+    // 货币金额
+    it("isMoney() 货币金额验证", function () {
         expect(v.isMoney('086-021-4433432-233')).to.be.false;
         expect(v.isMoney('5.00')).to.be.true;
+        expect(v.isMoney('5')).to.be.true;
         expect(v.isMoney('05.00')).to.be.false;
         expect(v.isMoney('05.002')).to.be.false;
-        expect(v.isMoney('5')).to.be.true;
+        expect(v.isMoney('12,000,000,000')).to.be.false;
+    });
+
+    // 是否为26个字母
+    it("isEnglish() 是否为26个字母", function () {
+        expect(v.isEnglish('086-021-4433432-233')).to.be.false;
+        expect(v.isEnglish('dsf123')).to.be.false;
+        expect(v.isEnglish('Hello Wold')).to.be.false;
+        expect(v.isEnglish('Hello')).to.be.true;
+    });
+
+    // 判断是否为中文
+    it("isChinese() 判断是否为中文", function () {
+        expect(v.isChinese('086-021-4433432-233')).to.be.false;
+        expect(v.isChinese('dsf123')).to.be.false;
+        expect(v.isChinese('Hello Wold')).to.be.false;
+        expect(v.isChinese('中文')).to.be.true;
+        expect(v.isChinese('中文！')).to.be.true;
+        expect(v.isChinese('中文！“我家”')).to.be.true;
+        expect(v.isChinese('中文！“我家”！，。、（）【】‘’《》；')).to.be.true;
+    });
+
+    // 判断百分值
+    it("isPercent() 判断是否为中文", function () {
+        expect(v.isPercent('100')).to.be.true;
+        expect(v.isPercent('100.23')).to.be.true;
+        expect(v.isPercent('100.12')).to.be.true;
+        expect(v.isPercent('23.12')).to.be.true;
+        expect(v.isPercent('1.99')).to.be.true;
+        expect(v.isPercent('1.2')).to.be.true;
+        expect(v.isPercent('0.2')).to.be.false;
+        expect(v.isPercent('101')).to.be.false;
+        expect(v.isPercent('01')).to.be.false;
+        expect(v.isPercent(-101)).to.be.false;
     });
 
 });
