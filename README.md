@@ -127,7 +127,10 @@ var a = new validator('example_form',[
     - `required` -> 是否为必填
     - `max_length` -> 最大字符长度
     - `min_length` -> 最小字符长度
-    - `same` -> 指定字段内容是否相同
+    - `same(field)` -> 指定字段内容是否相同
+    - `different(field)` -> 拒绝与某个字段相等,比如登录密码与交易密码情况
+    - `contains(field)` -> 直接判断字符串是否相等
+    - `accepted(field)` -> 用于服务条款,是否同意时相当有用,不限制checkbox与radio,有可能submit button直接附带value情况
 
 ```js 
 {
