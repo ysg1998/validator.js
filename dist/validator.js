@@ -1,5 +1,5 @@
 /*!
- * validator.tool v1.0.7
+ * validator.tool v1.0.8
  * 轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，~3kb。
  * 
  * Copyright (c) 2017 kenny wang <wowohoo@qq.com> (http://JSLite.io)
