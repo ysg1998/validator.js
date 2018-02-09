@@ -1,8 +1,8 @@
 /*!
- * validator.tool v1.0.8
+ * validator.tool v1.0.9
  * 轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，~3kb。
  * 
- * Copyright (c) 2017 kenny wang <wowohoo@qq.com> (http://JSLite.io)
+ * Copyright (c) 2018 kenny wang <wowohoo@qq.com> (http://JSLite.io)
  * http://jaywcjlove.github.io/validator.js
  * 
  * Licensed under the MIT license.
@@ -232,6 +232,9 @@
                 var failed = false;
                 // 解析带参数的验证如 max_length(12)
                 if (parts) method = parts[1], param = parts[2];
+                if (isEmpty && rules.indexOf("required") === -1) {
+                    continue;
+                }
                 if (typeof _testHook[method] === "function") {
                     if (!_testHook[method].apply(this, [ field, param ])) {
                         failed = true;
