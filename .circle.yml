@@ -1,11 +1,6 @@
 machine:
   node:
-    version: 9.3.0
-
-dependencies:
-  override:
-    - npm install
-
+    version: "9"
 test:
   override:
     - npm test
