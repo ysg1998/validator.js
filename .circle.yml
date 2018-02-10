@@ -1,6 +1,13 @@
 machine:
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
   node:
-    version: "9"
+    version: 9.3.0
+dependencies:
+  cache_directories:
+    - ~/.cache/yarn
+  override:
+    - yarn
 test:
   override:
-    - npm test
+    - yarn test
