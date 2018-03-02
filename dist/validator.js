@@ -1,5 +1,5 @@
 /*!
- * validator.tool v1.0.9
+ * validator.tool v1.0.10
  * 轻量级的JavaScript表单验证，字符串验证。没有依赖，支持UMD，~3kb。
  * 
  * Copyright (c) 2018 kenny wang <wowohoo@qq.com> (http://JSLite.io)
@@ -154,24 +154,24 @@
     var Validator = function(formelm, fields, callback) {
         // 将验证方法绑到 Validator 对象上去
         for (var a in _testHook) this[camelCase(a)] = _testHook[a];
+        // 如果不存在 form 对象
+                if (!formelm) return this;
         this.callback = callback || function() {};
         this.form = _formElm(formelm) || {};
         this.errors = [];
         this.fields = {};
         this.handles = {};
-        // 如果不存在 form 对象
-        if (!formelm) return this;
         for (var i = 0, fieldLength = fields.length; i < fieldLength; i++) {
             var field = fields[i];
             // 如果通过不正确，我们需要跳过该领域。
-            if (!field.name && !field.names || !field.rules) {
+                        if (!field.name && !field.names || !field.rules) {
                 console.warn(field);
                 continue;
             }
             addField(this, field, field.name);
         }
         // 使用 submit 按钮拦截
-        var _onsubmit = this.form.onsubmit;
+                var _onsubmit = this.form.onsubmit;
         this.form.onsubmit = function(that) {
             return function(evt) {
                 try {
@@ -209,7 +209,7 @@
                 this.callback(this, evt);
             }
             // 如果有错误，停止submit 提交
-            if (this.errors.length > 0) {
+                        if (this.errors.length > 0) {
                 if (evt && evt.preventDefault) {
                     evt.preventDefault();
                 } else if (event) {
@@ -231,7 +231,7 @@
                 var param = null;
                 var failed = false;
                 // 解析带参数的验证如 max_length(12)
-                if (parts) method = parts[1], param = parts[2];
+                                if (parts) method = parts[1], param = parts[2];
                 if (isEmpty && rules.indexOf("required") === -1) {
                     continue;
                 }
@@ -270,12 +270,12 @@
             }
             return this;
         }
-    };
+    }
     /**
  * [camelCase 将样式属性字符转换成驼峰。]
  * @param  {[type]} string [字符串]
  * @return {[type]}        [字符串]
- */
+ */;
     function camelCase(string) {
         // Support: IE9-11+
         return string.replace(/\_([a-z])/g, function(all, letter) {
@@ -287,8 +287,7 @@
  * @param  {[type]} element       [传入节点]
  * @param  {[type]} attributeName [需要获取的属性]
  * @return {[type]}               [返回String，属性值]
- */
-    function attributeValue(element, attributeName) {
+ */    function attributeValue(element, attributeName) {
         var i;
         if (element.length > 0 && (element[0].type === "radio" || element[0].type === "checkbox")) {
             for (i = 0, elementLength = element.length; i < elementLength; i++) {
@@ -327,16 +326,14 @@
  * [_formElm 获取 dome 节点对象]
  * @param  {[type]} elm [字符串或者节点对象]
  * @return {[type]}     [返回dom节点]
- */
-    function _formElm(elm) {
+ */    function _formElm(elm) {
         return typeof elm === "object" ? elm : document.forms[elm];
     }
     /**
  * [backVal 判断 field 是否为字符串 ]
  * @param  {[type]}              [Object or String]
  * @return {[type]}              [String]
- */
-    function backVal(field) {
+ */    function backVal(field) {
         return typeof field === "string" ? field : field.value;
     }
     return Validator;
