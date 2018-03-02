@@ -107,10 +107,13 @@ var _testHook = {
     }
 }
 
-var Validator = function(formelm, fields, callback){
+var Validator = function (formelm, fields, callback) {
 
     // 将验证方法绑到 Validator 对象上去
     for (var a in _testHook) this[camelCase(a)] = _testHook[a];
+
+    // 如果不存在 form 对象
+    if (!formelm) return this;
 
     this.callback = callback || function(){};
     this.form = _formElm(formelm) || {};
@@ -118,8 +121,6 @@ var Validator = function(formelm, fields, callback){
     this.fields = {};
     this.handles = {};
 
-    // 如果不存在 form 对象
-    if(!formelm) return this;
 
     for (var i = 0, fieldLength = fields.length; i < fieldLength; i++) {
         var field = fields[i];
