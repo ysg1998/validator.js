@@ -24,13 +24,13 @@
   </div>
 
   <div class="form-group">
-    <label for="passworld">密码:</label>
-    <input type="passworld" name="passworld" id="passworld" class="form-control" placeholder="输入密码">
+    <label for="password">密码:</label>
+    <input type="password" name="password" id="password" class="form-control" placeholder="输入密码">
   </div>
 
   <div class="form-group">
-    <label for="repassworld">确认密码:</label>
-    <input type="repassworld" name="repassworld" id="repassworld" class="form-control" placeholder="输入密码">
+    <label for="repassword">确认密码:</label>
+    <input type="repassword" name="repassword" id="repassword" class="form-control" placeholder="输入密码">
   </div>
 
   <div class="form-group">
@@ -74,13 +74,13 @@ var validator = new Validator('example_form',[
       display:"复选框不能为空",
       rules: 'required'
   },{
-      name:"passworld",
+      name:"password",
       display:"1必填",
       rules: 'required'
   },{
-      name:"repassworld",
+      name:"repassword",
       display:"密码不一致",
-      rules: 'same(passworld)'
+      rules: 'same(password)'
   }
 ],function(obj,evt){
 

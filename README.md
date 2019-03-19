@@ -72,13 +72,13 @@ var a = new validator('example_form',[
         <input type="email" name="email" id="email" class="form-control" placeholder="Email">
     </div>
     <div class="form-group">
-        <label for="passworld">密码:</label>
-        <input type="passworld" name="passworld" id="passworld" class="form-control" placeholder="输入密码">
+        <label for="password">密码:</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="输入密码">
     </div>
 
     <div class="form-group">
-        <label for="repassworld">确认密码:</label>
-        <input type="repassworld" name="repassworld" id="repassworld" class="form-control" placeholder="输入密码">
+        <label for="repassword">确认密码:</label>
+        <input type="repassword" name="repassword" id="repassword" class="form-control" placeholder="输入密码">
     </div>
 </form>
 <script type="text/javascript">
@@ -91,13 +91,13 @@ var a = new validator('example_form',[
         rules: 'is_emil|max_length(12)'
         // rules: 'valid_email|required|max_length(12)|min_length(2)'
     },{
-      name:"passworld",
+      name:"password",
       display:"必填",
       rules: 'required'
     },{
-      name:"repassworld",
+      name:"repassword",
       display:"密码不一致",
-      rules: 'same(passworld)'
+      rules: 'same(password)'
     }
   ],function(obj,evt){
       if(obj.errors){
